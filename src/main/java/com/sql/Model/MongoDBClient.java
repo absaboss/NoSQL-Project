@@ -27,20 +27,27 @@ public class MongoDBClient {
 
         FindIterable<Document> iterable = collection.find(new Document("name", restaurantName));
 
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
+        if(iterable != null){
+            iterable.forEach(new Block<Document>() {
+                @Override
+                public void apply(final Document document) {
 
-                System.out.println(document);
-                System.out.println();
-                System.out.println();
-
-
-                System.out.println(document.get("address"));
+                    System.out.println(document);
+                    System.out.println();
+                    System.out.println();
 
 
-            }
-        });
+                    System.out.println(document.get("address"));
+
+
+                }
+            });
+        }
+
+        else{
+            System.out.println("Le restaurant n'a pas été trouvé");
+        }
+
 
     }
 }
