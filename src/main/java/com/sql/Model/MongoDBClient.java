@@ -14,20 +14,31 @@ import org.json.JSONObject;
 public class MongoDBClient {
 
     MongoClient mongoClient;
+    MongoDatabase db;
+    MongoCollection collection;
+
     public MongoDBClient(){
         mongoClient = new MongoClient();
+        db = mongoClient.getDatabase("DBLP");
+        collection = db.getCollection("restaurants");
+    }
 
-        MongoDatabase db = mongoClient.getDatabase("DBLP");
+    public void findByName(String restaurantName){
 
-
-        MongoCollection coll = db.getCollection("restaurants");
-
-        FindIterable<Document> iterable = coll.find(new Document("borough", "Manhattan"));
+        FindIterable<Document> iterable = collection.find(new Document("name", restaurantName));
 
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
+
                 System.out.println(document);
+                System.out.println();
+                System.out.println();
+
+
+                System.out.println(document.get("address"));
+
+
             }
         });
 
