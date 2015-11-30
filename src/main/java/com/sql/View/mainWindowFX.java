@@ -22,7 +22,7 @@ public class mainWindowFX extends Application {
     public void start(Stage primaryStage) throws IOException {
         mainPane = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
 
-        Scene scene = new Scene(mainPane, 400, 350);
+        Scene scene = new Scene(mainPane, 600, 550);
 
         primaryStage.setTitle("Restaurants Manager");
         primaryStage.setScene(scene);

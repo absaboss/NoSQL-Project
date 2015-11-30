@@ -7,7 +7,7 @@
 <?import java.net.URL?>
 <GridPane fx:controller="com.sql.Controller.mainWindowFXController" xmlns:fx="http://javafx.com/fxml" fx:id="grid" alignment="center" hgap="10" vgap="10" styleClass="root">
 
-    <padding><Insets top="15" right="25" bottom="10" left="25"/></padding>
+    <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
 
     <Text id="bienvenue_text" text="Bienvenue" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
     <Label text="Valeur d'entrée:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
