@@ -18,6 +18,13 @@ public class Restaurants {
         this.cuisine = cuisine;
     }
 
+    public Restaurants(String name, Address address, String borough, String cuisine) {
+        this.name = name;
+        this.address = address;
+        this.borough = borough;
+        this.cuisine = cuisine;
+    }
+
     @Override
     public String toString() {
         return "Restaurants{" +

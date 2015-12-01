@@ -5,8 +5,13 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
+import org.bson.BSON;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by Absalon DEEL on 30/11/2015.
@@ -23,31 +28,53 @@ public class MongoDBClient {
         collection = db.getCollection("restaurants");
     }
 
-    public void findByName(String restaurantName){
+    String textDocumentFormat = "";
+    public String findByName(String restaurantName){
+
+        restaurantName = "Zum Stammtisch";
 
         FindIterable<Document> iterable = collection.find(new Document("name", restaurantName));
+        iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
+            @Override
+            public void apply(final Document document) {
+                textDocumentFormat = document.toJson();//On fait une conversion en JSON pour faciliter la manipulation
+            }
+        });
 
-        if(iterable != null){
-            iterable.forEach(new Block<Document>() {
-                @Override
-                public void apply(final Document document) {
+        return textDocumentFormat;
+    }
 
-                    System.out.println(document);
-                    System.out.println();
-                    System.out.println();
+    public void affichage(String json){
+        //Variable pour Restaurant
+        String name;
+        String borough;
+        String cuisine;
 
+        //Variable pour address
+        String building;
+        Coordonnees coord;
+        String street;
+        int zipCode;
 
-                    System.out.println(document.get("address"));
+        JSONObject obj = new JSONObject(json);//On crée notre nouvelle objet Json
+        name = obj.getString("name");
+        borough = obj.getString("borough");
+        cuisine = obj.getString("cuisine");
 
-                // Test de push Adrien O.O
-                }
-            });
-        }
+        JSONObject address = obj.getJSONObject("address");//On récupère l'objet Address
 
-        else{
-            System.out.println("Le restaurant n'a pas été trouvé");
-        }
+        building = address.getString("building");
+        zipCode = address.getInt("zipcode");
+        street = address.getString("street");
 
+        JSONObject coordinates = address.getJSONObject("coord");//On récupère l'objet Address
+        JSONArray coordinate = coordinates.getJSONArray("coordinates");//On récupère le tableau avec les 2 coordonnées
+        coord = new Coordonnees(coordinate.getDouble(0), coordinate.getDouble(1));//On instancie la nouvelle coordonnées
 
+        Address add = new Address(building, street, coord, zipCode);//On instancie l'address
+
+        Restaurants res = new Restaurants(name, add, borough, cuisine);//Enfin on instancie un nouveau restaurant
+
+        System.out.println(res);
     }
 }

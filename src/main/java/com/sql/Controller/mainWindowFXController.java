@@ -15,6 +15,6 @@ public class mainWindowFXController {
 
         String restaurantName = inputVal.getText().toString();
 
-        mongoClient.findByName(restaurantName);
+        mongoClient.affichage(mongoClient.findByName(restaurantName));
     }
 }
