@@ -27,7 +27,7 @@ public class Restaurants {
 
     @Override
     public String toString() {
-        return "Restaurants{" +
+        return "Restaurants { " +
                 "name='" + name + '\'' +
                 ", address=" + address +
                 ", borough='" + borough + '\'' +
