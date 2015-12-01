@@ -40,8 +40,6 @@ public class MongoDBClient {
                     System.out.println(document.get("address"));
 
                 // Test de push Adrien O.O
-
-
                 }
             });
         }
