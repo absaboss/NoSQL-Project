@@ -11,7 +11,10 @@ import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.mongodb.client.model.Filters.eq;
 
 /**
  * Created by Absalon DEEL on 30/11/2015.
@@ -40,6 +43,21 @@ public class MongoDBClient {
         });
 
         return textDocumentFormat;
+    }
+
+    List<String> stringList;
+    public List<String> findByBorough(String restaurantBorough){
+        stringList = new ArrayList<>();
+
+        FindIterable<Document> iterable = collection.find(eq("borough", restaurantBorough));
+        iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
+            @Override
+            public void apply(final Document document) {
+                stringList.add(document.toJson());//On ajoute nos fichier string a notre list
+            }
+        });
+
+        return stringList;
     }
 
     public void affichage(String json){
@@ -74,5 +92,9 @@ public class MongoDBClient {
         Restaurants res = new Restaurants(name, add, borough, cuisine);//Enfin on instancie un nouveau restaurant
 
         System.out.println(res);
+    }
+
+    public List<String> getStringList() {
+        return stringList;
     }
 }
