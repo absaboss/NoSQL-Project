@@ -31,8 +31,6 @@ public class MongoDBClient {
     String textDocumentFormat = "";
     public String findByName(String restaurantName){
 
-        restaurantName = "Zum Stammtisch";
-
         FindIterable<Document> iterable = collection.find(new Document("name", restaurantName));
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
