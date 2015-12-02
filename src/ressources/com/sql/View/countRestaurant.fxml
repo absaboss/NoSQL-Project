@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.*?>
+<?import java.net.URL?>
+
+<StackPane fx:controller="com.sql.Controller.countRestaurantFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
+
+    <children >
+        <VBox alignment="TOP_CENTER">
+            <Text id="bienvenue_text" text="How many restaurant ?" />
+
+            <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
+                <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
+
+                <Label text="Absalon" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox GridPane.rowIndex="2" GridPane.columnIndex="1" editable="false" >
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Manhattan" />
+                            <String fx:value="Bronx" />
+                            <String fx:value="Queens" />
+                            <String fx:value="Brooklyn" />
+                            <String fx:value="Staten Island" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </GridPane>
+
+        </VBox>
+
+    </children>
+
+    <stylesheets>
+        <URL value="@styleSheet.css"/>
+    </stylesheets>
+
+</StackPane>

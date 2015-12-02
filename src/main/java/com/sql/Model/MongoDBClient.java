@@ -1,6 +1,7 @@
 package com.sql.Model;
 
 import com.mongodb.*;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
+import static java.util.Arrays.asList;
 
 /**
  * Created by Absalon DEEL on 30/11/2015.
@@ -45,10 +47,9 @@ public class MongoDBClient {
         return textDocumentFormat;
     }
 
-    List<String> stringList;
+    List<String> stringList = new ArrayList<>();
     public List<String> findByBorough(String restaurantBorough){
-        stringList = new ArrayList<>();
-
+        stringList.clear();
         FindIterable<Document> iterable = collection.find(eq("borough", restaurantBorough));
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
@@ -58,6 +59,33 @@ public class MongoDBClient {
         });
 
         return stringList;
+    }
+
+    public List<String> find(){
+        stringList.clear();
+        AggregateIterable<Document> iterable = collection.aggregate(asList(
+                new Document("$match", new Document("borough", "Manhattan").append("cuisine", "Pizza")),
+                new Document("$group", new Document("_id", "$address.zipcode").append("count", new Document("$sum", 1)))));
+
+        iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
+            }
+        });
+
+        return stringList;
+    }
+
+    public void findDistinct(){
+//        BasicDBObject obj = new BasicDBObject("borough", "");
+//        FindIterable<Document> iterable = collection.distinct("id");
+//        iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
+//            @Override
+//            public void apply(final Document document) {
+//
+//            }
+//        });
     }
 
     public void affichage(String json){
