@@ -47,20 +47,23 @@ public class MongoDBClient {
         return textDocumentFormat;
     }
 
-    List<String> stringList = new ArrayList<>();
+    List<String> stringList = new ArrayList<>();;
     public List<String> findByBorough(String restaurantBorough){
-        stringList.clear();
+        //stringList.clear();
         FindIterable<Document> iterable = collection.find(eq("borough", restaurantBorough));
+
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
             public void apply(final Document document) {
                 stringList.add(document.toJson());//On ajoute nos fichier string a notre list
+//                System.out.println(document);
             }
         });
 
         return stringList;
     }
 
+    private List<String> list = new ArrayList<>();
     public List<String> find(){
         stringList.clear();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
@@ -74,7 +77,7 @@ public class MongoDBClient {
             }
         });
 
-        return stringList;
+        return list;
     }
 
     public Restaurants affichage(String json){

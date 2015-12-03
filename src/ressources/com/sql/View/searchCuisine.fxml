@@ -19,17 +19,6 @@
                 <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
 
                 <Label text="Absalon" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <ComboBox GridPane.rowIndex="2" GridPane.columnIndex="1" editable="false" >
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Manhattan" />
-                            <String fx:value="Bronx" />
-                            <String fx:value="Queens" />
-                            <String fx:value="Brooklyn" />
-                            <String fx:value="Staten Island" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
             </GridPane>
 
         </VBox>

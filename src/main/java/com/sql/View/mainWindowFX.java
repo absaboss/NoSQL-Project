@@ -22,9 +22,10 @@ public class mainWindowFX extends Application {
     }
 
     private GridPane mainPane;
-    //private GridPane mainPane2;
     private Stage primaryStage;
-    private Stage stage;
+    private Stage stageSearchByName;
+    private Stage stageSearchCuisine;
+    private Stage stageSearchBorough;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -40,20 +41,21 @@ public class mainWindowFX extends Application {
         primaryStage.setMinHeight(600);
 
         Button buttonSearch =(Button) mainPane.getChildren().get(1);
+        Button buttonSearchBorough = (Button) mainPane.getChildren().get(2);
         Button buttonSearchCusine = (Button) mainPane.getChildren().get(3);
 
-        stage = new Stage();
-        stage.setMinHeight(600);
-        stage.setMinWidth(600);
+        stageSearchByName = new Stage();
+        stageSearchByName.setMinHeight(600);
+        stageSearchByName.setMinWidth(600);
         buttonSearch.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByName.fxml"));
 
-                    stage.setTitle("Search restaurant by name");
-                    stage.setScene(new Scene(root, 450, 450));
-                    stage.show();
+                    stageSearchByName.setTitle("Search restaurant by name");
+                    stageSearchByName.setScene(new Scene(root, 600, 600));
+                    stageSearchByName.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
 
@@ -63,16 +65,39 @@ public class mainWindowFX extends Application {
             }
         });
 
-
+        stageSearchCuisine = new Stage();
+        stageSearchCuisine.setMinHeight(600);
+        stageSearchCuisine.setMinWidth(600);
         buttonSearchCusine.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("searchCuisine.fxml"));
 
-                    stage.setTitle("Search cuisine by borough");
-                    stage.setScene(new Scene(root, 450, 450));
-                    stage.show();
+                    stageSearchCuisine.setTitle("Search cuisine by borough");
+                    stageSearchCuisine.setScene(new Scene(root, 450, 450));
+                    stageSearchCuisine.show();
+
+                    //((Node)(event.getSource())).getScene().getWindow().hide();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        stageSearchBorough = new Stage();
+        stageSearchBorough.setMinHeight(700);
+        stageSearchBorough.setMinWidth(1000);
+        buttonSearchBorough.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("searchByBorough.fxml"));
+
+                    stageSearchBorough.setTitle("Search restaurants by borough");
+                    stageSearchBorough.setScene(new Scene(root, 1000, 700));
+                    stageSearchBorough.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
 

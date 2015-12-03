@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+
+
+<StackPane fx:controller="com.sql.Controller.searchByBoroughFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
+
+    <children >
+        <VBox fx:id="vBox" alignment="TOP_CENTER">
+            <padding><Insets top="30" right="25" bottom="10" left="25"/></padding>
+            <Text fx:id="top" text="Recherchez les restaurants par borough"/>
+
+            <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
+                <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
+                <Label text="Restaurant borough : " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="restaurantBorough" text="Manhattan" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <VBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <Button fx:id="searchButtonBorough" text="search" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                </VBox>
+
+                <Text fx:id="response" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+
+            </GridPane>
+
+        </VBox>
+    </children>
+
+    <stylesheets>
+        <URL value="@styleSheet.css"/>
+    </stylesheets>
+
+</StackPane>
