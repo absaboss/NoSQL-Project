@@ -1,11 +1,13 @@
 package com.sql.Controller;
 
 import com.sql.Model.Address;
+import com.sql.Model.MongoDBClient;
 import com.sql.Model.Restaurants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
@@ -13,7 +15,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by Absalon DEEL on 03/12/2015.
@@ -25,26 +30,33 @@ public class searchByBoroughFXController extends mainWindowFXController {
     @FXML private VBox vBox;
     @FXML private Text response;
 
-    private TableView<Restaurants> table = new TableView<>();
-    private List<String> stringList;
-    private ObservableList<Restaurants> restaurantsList = FXCollections.observableArrayList();
+    private TableView<Restaurants> table;
+    private ObservableList<Restaurants> restaurantsList;
 
 
     public void handleSearchButtonBoroughAction(ActionEvent actionEvent) {
 
-        table.setId("tableView");
-        stringList = mongoClient.findByBorough(restaurantBorough.getText().toString());
+        table = new TableView<>();
+        vBox.getChildren().add(table);
+        table.setEditable(true);
 
+        table.getItems().clear();
+        table.setId("tableView");
+
+        List<String> stringList = new ArrayList<>();
+        stringList.clear();
+        restaurantsList = FXCollections.observableArrayList();
+        restaurantsList.clear();
+
+       stringList = mongoClient.findByBorough(restaurantBorough.getText().toString());
+
+        int rand;
         for(int i = 0; i < 20; i++){
-            int rand = 0;
             rand = (int)(Math.random() * (stringList.size()));
 
             Restaurants res = mongoClient.affichage(stringList.get(rand));
             restaurantsList.add(res);
         }
-
-        vBox.getChildren().add(table);
-        table.setEditable(true);
 
         TableColumn nameCol = new TableColumn("Nom");
         nameCol.setMinWidth(300);
@@ -67,14 +79,10 @@ public class searchByBoroughFXController extends mainWindowFXController {
 
         adresse.getColumns().addAll(building, street, zipCode, coordinates);
 
-
-        //adresse.setCellValueFactory(new PropertyValueFactory<Restaurants, Address>("address"));
-
         TableColumn cuisine = new TableColumn("Cuisine");
         cuisine.setMinWidth(200);
         cuisine.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("cuisine"));
 
-        table.getColumns().clear();
         table.setItems(restaurantsList);
         table.getColumns().addAll(nameCol, adresse, cuisine);
     }
