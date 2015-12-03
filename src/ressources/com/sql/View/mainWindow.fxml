@@ -14,9 +14,9 @@
     <!--<Label text="Valeur d'entrée:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <TextField fx:id="inputVal" alignment="BASELINE_RIGHT" text="Flame Restaurant Coffee House" GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
 
-    <Button fx:id="buttonSearchName" text="Search by Name" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#handleSubmitButtonAction"/>
-    <Button fx:id="buttonSearchBorough" text="Search by Borough" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <Button fx:id="buttonSearchCuisine" text="Count restaurants" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Button fx:id="buttonSearchName" text="Search by name" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#handleSubmitButtonAction"/>
+    <Button fx:id="buttonSearchBorough" text="Search by borough" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Button fx:id="buttonSearchCuisine" text="Search cuisine by borough" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
 
     <Button fx:id="buttonCancel" text="Cancel" GridPane.rowIndex="10" GridPane.columnIndex="1" cancelButton="true" />

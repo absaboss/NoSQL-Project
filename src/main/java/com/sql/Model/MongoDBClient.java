@@ -77,17 +77,6 @@ public class MongoDBClient {
         return stringList;
     }
 
-    public void findDistinct(){
-//        BasicDBObject obj = new BasicDBObject("borough", "");
-//        FindIterable<Document> iterable = collection.distinct("id");
-//        iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
-//            @Override
-//            public void apply(final Document document) {
-//
-//            }
-//        });
-    }
-
     public Restaurants affichage(String json){
         //Variable pour Restaurant
         String name;
