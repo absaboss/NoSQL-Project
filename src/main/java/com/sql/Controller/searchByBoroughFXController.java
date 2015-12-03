@@ -25,12 +25,15 @@ public class searchByBoroughFXController extends mainWindowFXController {
     @FXML private VBox vBox;
     @FXML private Text response;
 
-    private TableView<Restaurants> table = new TableView<Restaurants>();
+    private TableView<Restaurants> table = new TableView<>();
+    private List<String> stringList;
     private ObservableList<Restaurants> restaurantsList = FXCollections.observableArrayList();
 
 
     public void handleSearchButtonBoroughAction(ActionEvent actionEvent) {
-        List<String> stringList = mongoClient.findByBorough(restaurantBorough.getText().toString());
+
+        table.setId("tableView");
+        stringList = mongoClient.findByBorough(restaurantBorough.getText().toString());
 
         for(int i = 0; i < 20; i++){
             int rand = 0;
@@ -47,8 +50,11 @@ public class searchByBoroughFXController extends mainWindowFXController {
         nameCol.setMinWidth(300);
         nameCol.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("name"));
 
+        TableColumn adresse = new TableColumn("Adresse");
+        adresse.setMinWidth(500);
+
         TableColumn building = new TableColumn("Building");
-        building.setCellValueFactory(new PropertyValueFactory<Restaurants, Address>("building"));
+        building.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("building"));
 
         TableColumn street = new TableColumn("Street");
         street.setCellValueFactory(new PropertyValueFactory<Restaurants, Address>("street"));
@@ -59,8 +65,6 @@ public class searchByBoroughFXController extends mainWindowFXController {
         TableColumn coordinates = new TableColumn("Coordinates");
         coordinates.setCellValueFactory(new PropertyValueFactory<Restaurants, Address>("coord"));
 
-        TableColumn adresse = new TableColumn("Adresse");
-        adresse.setMinWidth(500);
         adresse.getColumns().addAll(building, street, zipCode, coordinates);
 
 
@@ -70,6 +74,7 @@ public class searchByBoroughFXController extends mainWindowFXController {
         cuisine.setMinWidth(200);
         cuisine.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("cuisine"));
 
+        table.getColumns().clear();
         table.setItems(restaurantsList);
         table.getColumns().addAll(nameCol, adresse, cuisine);
     }

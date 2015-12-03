@@ -44,6 +44,22 @@ public class Restaurants {
         return address;
     }
 
+    public String getBuilding(){
+        return address.getBuilding();
+    }
+
+    public String getStreet(){
+        return address.getStreet();
+    }
+
+    public int getZipCode(){
+        return address.getZipCode();
+    }
+
+    public Coordonnees getCoord(){
+        return address.getCoord();
+    }
+
     public String getBorough() {
         return borough;
     }

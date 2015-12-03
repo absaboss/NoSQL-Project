@@ -88,7 +88,7 @@ public class mainWindowFX extends Application {
 
         stageSearchBorough = new Stage();
         stageSearchBorough.setMinHeight(700);
-        stageSearchBorough.setMinWidth(1000);
+        stageSearchBorough.setMinWidth(1050);
         buttonSearchBorough.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
@@ -96,7 +96,7 @@ public class mainWindowFX extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByBorough.fxml"));
 
                     stageSearchBorough.setTitle("Search restaurants by borough");
-                    stageSearchBorough.setScene(new Scene(root, 1000, 700));
+                    stageSearchBorough.setScene(new Scene(root, 1050, 700));
                     stageSearchBorough.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
