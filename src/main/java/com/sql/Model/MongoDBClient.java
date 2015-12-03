@@ -88,7 +88,7 @@ public class MongoDBClient {
 //        });
     }
 
-    public void affichage(String json){
+    public Restaurants affichage(String json){
         //Variable pour Restaurant
         String name;
         String borough;
@@ -120,6 +120,8 @@ public class MongoDBClient {
         Restaurants res = new Restaurants(name, add, borough, cuisine);//Enfin on instancie un nouveau restaurant
 
         System.out.println(res);
+
+        return res;
     }
 
     public List<String> getStringList() {

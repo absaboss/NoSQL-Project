@@ -18,11 +18,22 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "building='" + building + '\'' +
-                ", coord=" + coord +
-                ", street='" + street + '\'' +
-                ", zipCode=" + zipCode +
-                '}';
+        return "Building = " + building + "\nStreet = " + street + "\nZip Code = " + zipCode + "\nCoordonnees = " + coord;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public Coordonnees getCoord() {
+        return coord;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getZipCode() {
+        return zipCode;
     }
 }

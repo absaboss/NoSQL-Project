@@ -14,9 +14,14 @@ public class Coordonnees {
 
     @Override
     public String toString() {
-        return "Coordonnees{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "(x = " + x + ", y=" + y + ")";
+    }
+
+    public Double getX() {
+        return x;
+    }
+
+    public Double getY() {
+        return y;
     }
 }

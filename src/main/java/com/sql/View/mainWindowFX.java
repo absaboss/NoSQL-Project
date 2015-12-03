@@ -39,7 +39,7 @@ public class mainWindowFX extends Application {
         primaryStage.setMinWidth(600);
         primaryStage.setMinHeight(600);
 
-        Button buttonSearch =(Button) mainPane.getChildren().get(3);
+        Button buttonSearch =(Button) mainPane.getChildren().get(1);
 
         stage = new Stage();
         stage.setMinHeight(600);
@@ -48,13 +48,13 @@ public class mainWindowFX extends Application {
             @Override
             public void handle(javafx.event.ActionEvent event) {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("countRestaurant.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("searchByName.fxml"));
 
-                    stage.setTitle("Restaurant Manager");
+                    stage.setTitle("Search restaurant by name");
                     stage.setScene(new Scene(root, 450, 450));
                     stage.show();
 
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                    //((Node)(event.getSource())).getScene().getWindow().hide();
 
                 } catch (IOException e) {
                     e.printStackTrace();

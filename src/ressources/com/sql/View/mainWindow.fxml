@@ -6,15 +6,20 @@
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
 <GridPane fx:controller="com.sql.Controller.mainWindowFXController" xmlns:fx="http://javafx.com/fxml"
-          fx:id="grid" alignment="center" hgap="10" vgap="10" styleClass="root">
+          fx:id="grid" alignment="TOP_CENTER" hgap="10" vgap="10" styleClass="root">
 
     <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
 
     <Text id="bienvenue_text" text="Bienvenue" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
-    <Label text="Valeur d'entrée:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <TextField fx:id="inputVal" alignment="BASELINE_RIGHT" text="Flame Restaurant Coffee House" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <!--<Label text="Valeur d'entrée:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="inputVal" alignment="BASELINE_RIGHT" text="Flame Restaurant Coffee House" GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
 
-    <Button fx:id="buttonSearch" text="Calculer" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#handleSubmitButtonAction"/>
+    <Button fx:id="buttonSearchName" text="Search by Name" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#handleSubmitButtonAction"/>
+    <Button fx:id="buttonSearchBorough" text="Search by Borough" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Button fx:id="buttonSearchCuisine" text="Count restaurants" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+
+    <Button fx:id="buttonCancel" text="Cancel" GridPane.rowIndex="10" GridPane.columnIndex="1" cancelButton="true" />
 
     <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
 

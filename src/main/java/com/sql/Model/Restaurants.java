@@ -35,4 +35,24 @@ public class Restaurants {
                 ", cuisine='" + cuisine + '\'' +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getBorough() {
+        return borough;
+    }
+
+    public char getGrade() {
+        return grade;
+    }
+
+    public String getCuisine() {
+        return cuisine;
+    }
 }
