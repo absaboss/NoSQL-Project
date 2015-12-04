@@ -2,6 +2,7 @@ package com.sql.Model;
 
 import com.mongodb.*;
 import com.mongodb.client.*;
+import com.mongodb.connection.Stream;
 import com.mongodb.util.JSON;
 import org.bson.BSON;
 import org.bson.BsonDocument;
@@ -23,7 +24,6 @@ public class MongoDBClient {
     MongoClient mongoClient;
     MongoDatabase db;
     MongoCollection collection;
-    List<String> stringList = new ArrayList<>();
 
     public MongoDBClient(){
         mongoClient = new MongoClient();
@@ -46,7 +46,7 @@ public class MongoDBClient {
     }
 
     public List<String> findByBorough(String restaurantBorough){
-        stringList.clear();
+        List<String> stringList = new ArrayList<>();
         FindIterable<Document> iterable = collection.find(eq("borough", restaurantBorough));
 
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
@@ -60,7 +60,7 @@ public class MongoDBClient {
     }
 
     public List<String> allCuisine(){
-        stringList.clear();
+        List<String> list = new ArrayList<>();
 
         AggregateIterable<Document> iterable = collection.aggregate(asList(
                 new Document("$group", new Document("_id", "$cuisine"))));
@@ -71,15 +71,15 @@ public class MongoDBClient {
                 JSONObject obj = new JSONObject(document.toJson());
                 String diffCuisine = obj.getString("_id");
 
-                stringList.add(diffCuisine);
+                list.add(diffCuisine);
             }
         });
 
-        return stringList;
+        return list;
     }
 
     public List<String> allBorough(){
-        stringList.clear();
+        List<String> stringList = new ArrayList<>();
 
         AggregateIterable<Document> iterable = collection.aggregate(asList(
                 new Document("$group", new Document("_id", "$borough"))));
@@ -99,7 +99,7 @@ public class MongoDBClient {
 
 
     public List<String> find(){
-        stringList.clear();
+        List<String> stringList = new ArrayList<>();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
                 new Document("$match", new Document("borough", "Manhattan").append("cuisine", "Pizza")),
                 new Document("$group", new Document("_id", "$address.zipcode").append("count", new Document("$sum", 1)))));
@@ -150,7 +150,4 @@ public class MongoDBClient {
         return res;
     }
 
-    public List<String> getStringList() {
-        return stringList;
-    }
 }
