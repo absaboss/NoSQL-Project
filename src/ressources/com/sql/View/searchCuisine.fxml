@@ -13,7 +13,7 @@
 <StackPane fx:controller="com.sql.Controller.searchCuisineFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
 
     <children >
-        <VBox alignment="TOP_CENTER">
+        <VBox fx:id="vB" alignment="TOP_CENTER">
             <Text id="bienvenue_text" text="How many restaurant ?" />
 
             <Label text="Choisir le type de cuisine"/>

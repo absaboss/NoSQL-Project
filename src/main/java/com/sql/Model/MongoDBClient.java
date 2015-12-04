@@ -106,7 +106,8 @@ public class MongoDBClient {
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
             public void apply(final Document document) {
-                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
+//                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
+                stringList.add(document.toJson());
             }
         });
 
