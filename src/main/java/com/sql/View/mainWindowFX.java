@@ -50,7 +50,7 @@ public class mainWindowFX extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByName.fxml"));
 
                     stageSearchByName.setTitle("Search restaurant by name");
-                    stageSearchByName.setScene(new Scene(root, 600, 600));
+                    stageSearchByName.setScene(new Scene(root, 1000, 500));
                     stageSearchByName.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
@@ -63,7 +63,7 @@ public class mainWindowFX extends Application {
 
         stageSearchCuisine = new Stage();
         stageSearchCuisine.setMinHeight(500);
-        stageSearchCuisine.setMinWidth(600);
+        stageSearchCuisine.setMinWidth(1000);
         buttonSearchCusine.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
