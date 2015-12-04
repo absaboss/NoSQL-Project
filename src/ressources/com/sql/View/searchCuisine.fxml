@@ -30,6 +30,7 @@
 
                 <VBox alignment="BASELINE_RIGHT">
                     <Button fx:id="searchC" text="search" onAction="#handleSearchCButtonAction" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                    <Button fx:id="searchD" text="search" onAction="#handleSearchCButtonAction1" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
                 </VBox>
             </GridPane>
 
