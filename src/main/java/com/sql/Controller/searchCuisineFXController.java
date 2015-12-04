@@ -1,15 +1,19 @@
 package com.sql.Controller;
 
+import com.sql.Model.Cuisine_Borough;
 import com.sql.Model.MongoDBClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -54,19 +58,34 @@ public class searchCuisineFXController implements Initializable{
 
         MongoDBClient mongoClient = new MongoDBClient();
 
-        reponse = new Label();
+//        reponse = new Label();
 
-        String phrase = "";
+//        String phrase = "";
 
-        List<String> list = mongoClient.find(comboCuisine.getValue(),comboBorough.getValue());
+        List<String> list = mongoClient.find(comboBorough.getValue());
+        List<Cuisine_Borough> listCB = new ArrayList<>();
 
-        for(int i = 0; i < list.size(); i++) {
-            phrase += list.get(i);
+        for(int i = 0; i<list.size(); i++){
+            JSONObject obj = new JSONObject(list.get(i));
+
+            Cuisine_Borough cb = new Cuisine_Borough(obj.getString("_id"), obj.getInt("count"));
+            listCB.add(cb);
         }
 
-        reponse.setText(phrase);
-        vB.getChildren().addAll(reponse);
-//        grid.add(reponse, 0,3);
+
+        final PieChart chart = new PieChart();
+        chart.setTitle("Cuisine");
+
+        List<PieChart.Data> l = new ArrayList<>();
+
+        for(int i = 0; i<listCB.size(); i++){
+            Cuisine_Borough c = listCB.get(i);
+            l.add(new PieChart.Data(c.getCuisine(), c.getNb()));
+        }
+
+        chart.getData().setAll(l);
+
+        vB.getChildren().addAll(chart);
 
     }
 }

@@ -97,17 +97,18 @@ public class MongoDBClient {
     }
 
 
-    public List<String> find(String cuisine, String borough){
+    public List<String> find(String borough){
         List<String> stringList = new ArrayList<>();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
-                new Document("$match", new Document("borough", borough).append("cuisine", cuisine)),
-                new Document("$group", new Document("_id", "$address.zipcode").append("count", new Document("$sum", 1)))));
+                new Document("$match", new Document("borough", borough)),
+                new Document("$group", new Document("_id", "$cuisine").append("count", new Document("$sum", 1)))));
 
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
             public void apply(final Document document) {
 //                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
                 stringList.add(document.toJson());
+                System.out.println(document.toJson());
             }
         });
 
