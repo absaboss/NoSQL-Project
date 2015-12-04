@@ -78,11 +78,30 @@ public class MongoDBClient {
         return stringList;
     }
 
+    public List<String> allBorough(){
+        stringList.clear();
 
-    public List<String> find(){
+        AggregateIterable<Document> iterable = collection.aggregate(asList(
+                new Document("$group", new Document("_id", "$borough"))));
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                JSONObject obj = new JSONObject(document.toJson());
+                String diffBorough = obj.getString("_id");
+
+                stringList.add(diffBorough);
+            }
+        });
+
+        return stringList;
+    }
+
+
+    public List<String> find(String cuisine, String borough){
         stringList.clear();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
-                new Document("$match", new Document("borough", "Manhattan").append("cuisine", "Pizza")),
+                new Document("$match", new Document("borough", borough).append("cuisine", cuisine)),
                 new Document("$group", new Document("_id", "$address.zipcode").append("count", new Document("$sum", 1)))));
 
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
