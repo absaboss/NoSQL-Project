@@ -36,7 +36,7 @@ public class searchCuisineFXController implements Initializable{
     private ComboBox<String> comboCuisine;
     private ComboBox<String> comboBorough;
     private Label reponse;
-    private int compteur = 0;
+    //private int compteur = 0;
 
     private MongoDBClient mongoClient = new MongoDBClient();
     private List<String> list = mongoClient.allCuisine();
@@ -66,13 +66,11 @@ public class searchCuisineFXController implements Initializable{
 
     public void handleSearchCButtonAction(ActionEvent actionEvent) {
 
-        MongoDBClient mongoClient = new MongoDBClient();
-
-        List<String> list = mongoClient.find(comboBorough.getValue());
+        List<String> list5 = mongoClient.find(comboBorough.getValue());
         List<Cuisine_Borough> listCB = new ArrayList<>();
 
-        for(int i = 0; i<list.size(); i++){
-            JSONObject obj = new JSONObject(list.get(i));
+        for(int i = 0; i<list5.size(); i++){
+            JSONObject obj = new JSONObject(list5.get(i));
 
             Cuisine_Borough cb = new Cuisine_Borough(obj.getString("_id"), obj.getInt("count"));
             listCB.add(cb);
@@ -88,9 +86,7 @@ public class searchCuisineFXController implements Initializable{
 
         for(int i = 0; i<listCB.size(); i++){
             Cuisine_Borough c = listCB.get(i);
-            if(c.getNb()>100){
-                l.add(new PieChart.Data(c.getCuisine(), c.getNb()));
-            }
+            l.add(new PieChart.Data(c.getCuisine(), c.getNb()));
         }
 
         chart.getData().setAll(l);
@@ -111,7 +107,7 @@ public class searchCuisineFXController implements Initializable{
 
         seriesNames[0] = comboCuisine.getValue();
 
-        final int[] values = {}; // tableau d'entier de la répartition des restau pour chaque borough
+        final int[] values = {1,2,3,4,5}; // tableau d'entier de la répartition des restau pour chaque borough
         final double minY = 0;
         double maxY = -Double.MAX_VALUE;
         for (int seriesIndex = 0; seriesIndex < seriesNames.length; seriesIndex++) {
