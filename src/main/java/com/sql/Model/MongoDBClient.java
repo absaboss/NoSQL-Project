@@ -78,6 +78,25 @@ public class MongoDBClient {
         return stringList;
     }
 
+    public List<String> allBorough(){
+        stringList.clear();
+
+        AggregateIterable<Document> iterable = collection.aggregate(asList(
+                new Document("$group", new Document("_id", "$borough"))));
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                JSONObject obj = new JSONObject(document.toJson());
+                String diffBorough = obj.getString("_id");
+
+                stringList.add(diffBorough);
+            }
+        });
+
+        return stringList;
+    }
+
 
     public List<String> find(){
         stringList.clear();

@@ -13,6 +13,6 @@ public class searchCuisineFXController extends mainWindowFXController{
 
 
     public void handleSearchCButtonAction(ActionEvent actionEvent) {
-        mongoClient.allCuisine();
+        mongoClient.allBorough();
     }
 }
