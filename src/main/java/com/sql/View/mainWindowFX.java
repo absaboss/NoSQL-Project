@@ -33,19 +33,19 @@ public class mainWindowFX extends Application {
 
         mainPane = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
 
-        Scene scene = new Scene(mainPane, 600, 550);
+        Scene scene = new Scene(mainPane,1000,500);
 
         primaryStage.setTitle("Restaurants Manager");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(600);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(1000);
+        primaryStage.setMinHeight(500);
 
         Button buttonSearch =(Button) mainPane.getChildren().get(1);
         Button buttonSearchBorough = (Button) mainPane.getChildren().get(2);
         Button buttonSearchCusine = (Button) mainPane.getChildren().get(3);
 
         stageSearchByName = new Stage();
-        stageSearchByName.setMinHeight(600);
+        stageSearchByName.setMinHeight(500);
         stageSearchByName.setMinWidth(600);
         buttonSearch.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -66,7 +66,7 @@ public class mainWindowFX extends Application {
         });
 
         stageSearchCuisine = new Stage();
-        stageSearchCuisine.setMinHeight(600);
+        stageSearchCuisine.setMinHeight(500);
         stageSearchCuisine.setMinWidth(600);
         buttonSearchCusine.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
