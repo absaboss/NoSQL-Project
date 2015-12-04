@@ -24,8 +24,11 @@ public class searchCuisineFXController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         comboCuisine = new ComboBox<>();
         comboBorough = new ComboBox<>();
-        grid.add(comboBorough, 2,1);
-        grid.add(comboCuisine, 2,2);
+        grid.add(comboBorough, 0,1);
+        grid.add(comboCuisine, 0,2);
+
+        comboBorough.setMaxWidth(150);
+        comboCuisine.setMaxWidth(350);
 
         MongoDBClient mongoClient = new MongoDBClient();
 
