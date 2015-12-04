@@ -9,7 +9,8 @@
 <?import java.lang.*?>
 <?import java.net.URL?>
 
-<StackPane fx:controller="com.sql.Controller.countRestaurantFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
+<?import javafx.scene.control.Button?>
+<StackPane fx:controller="com.sql.Controller.searchCuisineFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
 
     <children >
         <VBox alignment="TOP_CENTER">
@@ -18,7 +19,10 @@
             <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
                 <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
 
-                <Label text="Absalon" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+
+                <VBox alignment="BASELINE_RIGHT">
+                    <Button fx:id="searchC" text="search" onAction="#handleSearchCButtonAction" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                </VBox>
             </GridPane>
 
         </VBox>

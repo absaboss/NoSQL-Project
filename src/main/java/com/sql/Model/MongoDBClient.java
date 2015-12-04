@@ -1,10 +1,7 @@
 package com.sql.Model;
 
 import com.mongodb.*;
-import com.mongodb.client.AggregateIterable;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.util.JSON;
 import org.bson.BSON;
 import org.bson.BsonDocument;
@@ -26,6 +23,7 @@ public class MongoDBClient {
     MongoClient mongoClient;
     MongoDatabase db;
     MongoCollection collection;
+    List<String> stringList = new ArrayList<>();
 
     public MongoDBClient(){
         mongoClient = new MongoClient();
@@ -47,7 +45,6 @@ public class MongoDBClient {
         return textDocumentFormat;
     }
 
-    List<String> stringList = new ArrayList<>();;
     public List<String> findByBorough(String restaurantBorough){
         stringList.clear();
         FindIterable<Document> iterable = collection.find(eq("borough", restaurantBorough));
@@ -62,7 +59,26 @@ public class MongoDBClient {
         return stringList;
     }
 
-    private List<String> list = new ArrayList<>();
+    public List<String> allCuisine(){
+        stringList.clear();
+
+        AggregateIterable<Document> iterable = collection.aggregate(asList(
+                new Document("$group", new Document("_id", "$cuisine"))));
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                JSONObject obj = new JSONObject(document.toJson());
+                String diffCuisine = obj.getString("_id");
+
+                stringList.add(diffCuisine);
+            }
+        });
+
+        return stringList;
+    }
+
+
     public List<String> find(){
         stringList.clear();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
@@ -76,7 +92,7 @@ public class MongoDBClient {
             }
         });
 
-        return list;
+        return stringList;
     }
 
     public Restaurants affichage(String json){

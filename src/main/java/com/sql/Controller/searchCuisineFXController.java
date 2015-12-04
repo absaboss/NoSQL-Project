@@ -9,10 +9,10 @@ import java.util.ResourceBundle;
 /**
  * Created by Absalon DEEL on 02/12/2015.
  */
-public class countRestaurantFXController implements Initializable {
+public class searchCuisineFXController extends mainWindowFXController{
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
+    public void handleSearchCButtonAction(ActionEvent actionEvent) {
+        mongoClient.allCuisine();
     }
 }
