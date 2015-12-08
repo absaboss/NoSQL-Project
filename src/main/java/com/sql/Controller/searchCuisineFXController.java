@@ -226,6 +226,7 @@ public class searchCuisineFXController implements Initializable{
         Scene scene  = new Scene(bc, 1000, 800);
         bc.getData().addAll(series1, series2);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
 
     }
