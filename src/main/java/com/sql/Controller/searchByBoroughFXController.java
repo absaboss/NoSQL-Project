@@ -55,19 +55,23 @@ public class searchByBoroughFXController implements Initializable {
 
     }
 
+    public static void Refresh(final TableView<com.sql.Model.Restaurants> table, final List<com.sql.Model.Restaurants> tableList) {
+
+        table.setItems(null);
+        table.setItems(FXCollections.observableList(tableList));
+    }
 
     public void handleSearchButtonBoroughAction(ActionEvent actionEvent) {
 
-        String phrase = "Tableau des ";
-        phrase += restaurantBorough.getText() + " restaurants aleatoire dans ";
-        phrase += comboBorough.getValue();
-        stage.setTitle(phrase);
+//        String phrase = "Tableau des ";
+//        phrase += restaurantBorough.getText() + " restaurants aleatoire dans ";
+//        phrase += comboBorough.getValue();
 
-        Scene scene = new Scene(table);
+        table = nu
 
         table.setEditable(true);
+        vBox.getChildren().add(table);
 
-        table.getItems().clear();
         table.setId("tableView");
 
         List<String> stringList = new ArrayList<>();
@@ -110,13 +114,9 @@ public class searchByBoroughFXController implements Initializable {
         cuisine.setMinWidth(200);
         cuisine.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("cuisine"));
 
-        table.setItems(restaurantsList);
         table.getColumns().addAll(nameCol, adresse, cuisine);
-
-        stage.setScene(scene);
-        stage.setMinWidth(1102);
-        stage.setMinHeight(800);
-        stage.show();
+//        table.setItems(restaurantsList);
+        Refresh(table, restaurantsList);
 
     }
 
