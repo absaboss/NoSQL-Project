@@ -80,7 +80,6 @@ public class searchCuisineFXController implements Initializable{
     }
 
 
-
     public void handleSearchCButtonAction(ActionEvent actionEvent) {
 
         String phrase = "Pourcentages des cuisines dans ";
@@ -123,9 +122,10 @@ public class searchCuisineFXController implements Initializable{
                     });
         }
 
-        Scene scene2  = new Scene(chart, 1000, 900);
+        Scene scene2  = new Scene(chart, 1000, 1000);
         chart.getData().setAll(l);
         stage2.setScene(scene2);
+        stage2.setFullScreen(true);
         stage2.show();
 
     }
