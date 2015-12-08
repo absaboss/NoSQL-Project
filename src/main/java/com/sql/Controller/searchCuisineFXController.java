@@ -3,16 +3,20 @@ package com.sql.Controller;
 import com.sql.Model.Cuisine_Borough;
 import com.sql.Model.MongoDBClient;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
@@ -36,6 +40,7 @@ public class searchCuisineFXController implements Initializable{
     private Label reponse;
     //private int compteur = 0;
     private Stage stage = new Stage();
+    public Stage stage2 = new Stage();
 
     private MongoDBClient mongoClient = new MongoDBClient();
     private List<String> list = mongoClient.allCuisine();
@@ -67,11 +72,23 @@ public class searchCuisineFXController implements Initializable{
             comboBorough3.getItems().add(list2.get(j));
         }
 
+        comboBorough.getSelectionModel().select(list2.get(2));
+        comboBorough2.getSelectionModel().select(list2.get(5));
+        comboBorough3.getSelectionModel().select(list2.get(3));
+
+
     }
 
 
 
     public void handleSearchCButtonAction(ActionEvent actionEvent) {
+
+        String phrase = "Pourcentages des cuisines dans ";
+        phrase += comboBorough3.getValue() + " ";
+        stage2.setTitle(phrase);
+
+        final PieChart chart = new PieChart();
+        chart.setTitle(comboBorough3.getValue());
 
         List<String> list5 = mongoClient.find(comboBorough3.getValue());
         List<Cuisine_Borough> listCB = new ArrayList<>();
@@ -84,11 +101,6 @@ public class searchCuisineFXController implements Initializable{
         }
 
 
-        final PieChart chart = new PieChart();
-        String phrase = "Type de cuisine dans ";
-        phrase += comboBorough3.getValue();
-        chart.setTitle(phrase);
-
         List<PieChart.Data> l = new ArrayList<>();
 
         for(int i = 0; i<listCB.size(); i++){
@@ -96,8 +108,25 @@ public class searchCuisineFXController implements Initializable{
             l.add(new PieChart.Data(c.getCuisine(), c.getNb()));
         }
 
+        final Label caption = new Label("");
+        caption.setTextFill(Color.DARKORANGE);
+        caption.setStyle("-fx-font: 24 arial;");
+
+        for (final PieChart.Data data : chart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(String.valueOf(data.getPieValue()) + "%");
+                        }
+                    });
+        }
+
+        Scene scene2  = new Scene(chart, 1000, 900);
         chart.getData().setAll(l);
-        vB.getChildren().addAll(chart);
+        stage2.setScene(scene2);
+        stage2.show();
 
     }
 
@@ -203,5 +232,6 @@ public class searchCuisineFXController implements Initializable{
         bc.getData().addAll(series1, series2);
         stage.setScene(scene);
         stage.show();
+
     }
 }

@@ -23,8 +23,8 @@
             <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
                 <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
 
-                    <Button fx:id="searchC" text="search33" onAction="#handleSearchCButtonAction" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
-                    <Button fx:id="searchD" text="search" onAction="#handleSearchCButtonAction1" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Button fx:id="searchC" text="Cuisines dans..." onAction="#handleSearchCButtonAction" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                    <Button fx:id="searchD" text="Comparaison entre.." onAction="#handleSearchCButtonAction1" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
             </GridPane>
 
