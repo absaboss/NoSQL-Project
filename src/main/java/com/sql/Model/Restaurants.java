@@ -7,10 +7,10 @@ public class Restaurants {
     private String name;
     private Address address;
     private String borough;
-    private char grade;
+    private String grade;
     private String cuisine;
 
-    public Restaurants(String name, Address address, String borough, char grade, String cuisine) {
+    public Restaurants(String name, Address address, String borough, String grade, String cuisine) {
         this.name = name;
         this.address = address;
         this.borough = borough;
@@ -27,11 +27,11 @@ public class Restaurants {
 
     @Override
     public String toString() {
-        return "Restaurants { " +
+        return "Restaurants{" +
                 "name='" + name + '\'' +
                 ", address=" + address +
                 ", borough='" + borough + '\'' +
-                ", grade=" + grade +
+                ", grade='" + grade + '\'' +
                 ", cuisine='" + cuisine + '\'' +
                 '}';
     }
@@ -64,7 +64,7 @@ public class Restaurants {
         return borough;
     }
 
-    public char getGrade() {
+    public String getGrade() {
         return grade;
     }
 
