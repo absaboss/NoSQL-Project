@@ -16,11 +16,12 @@
 
             <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
                 <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
-                <Label text="Restaurant borough : " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <TextField fx:id="restaurantBorough" text="Manhattan" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Nombre de restaurants aléatoires :" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="restaurantBorough" text="10" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
                 <VBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <Button fx:id="searchButtonBorough" text="search" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Button fx:id="searchButtonBorough" text="generer le tableau" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Button fx:id="searchButtonBorough2" text="afficher la selection sur une carte" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction2" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                 </VBox>
 
                 <Text fx:id="response" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
