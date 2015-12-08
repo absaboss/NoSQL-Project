@@ -127,13 +127,13 @@ public class searchByBoroughFXController implements Initializable {
 
         Stage primaryStage = new Stage();
         WebView webView = new WebView();
-        Scene scene2 = new Scene(webView, 500, 500);
+        Scene scene2 = new Scene(webView, 900, 900);
 
         Double x = test.getCoord().getX();
         Double y = test.getCoord().getY();
 
         WebEngine webEngine = webView.getEngine();
-        webEngine.load("https://www.google.fr/maps/@" + y +","+ x + ",21z?hl=fr");
+        webEngine.load("https://www.google.fr/maps/@" + y +","+ x + ",19z?hl=fr");
 
         primaryStage.setTitle("Geolocalisation de " + test.getName().toString() + " dans " + test.getBorough().toString());
         primaryStage.setScene(scene2);
