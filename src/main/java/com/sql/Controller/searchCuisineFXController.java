@@ -70,12 +70,15 @@ public class searchCuisineFXController implements Initializable{
             comboBorough.getItems().add(list2.get(j));
             comboBorough2.getItems().add(list2.get(j));
             comboBorough3.getItems().add(list2.get(j));
+
         }
 
         comboBorough.getSelectionModel().select(list2.get(2));
         comboBorough2.getSelectionModel().select(list2.get(5));
         comboBorough3.getSelectionModel().select(list2.get(3));
 
+        comboBorough.getItems().remove(list2.get(0));
+        comboBorough2.getItems().remove(list2.get(0));
 
     }
 
