@@ -1,16 +1,12 @@
 package com.sql.View;
 
-import com.sql.Controller.mainWindowFXController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,19 +29,19 @@ public class mainWindowFX extends Application {
 
         mainPane = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
 
-        Scene scene = new Scene(mainPane, 600, 550);
+        Scene scene = new Scene(mainPane,1000,500);
 
         primaryStage.setTitle("Restaurants Manager");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(600);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(1000);
+        primaryStage.setMinHeight(500);
 
         Button buttonSearch =(Button) mainPane.getChildren().get(1);
         Button buttonSearchBorough = (Button) mainPane.getChildren().get(2);
         Button buttonSearchCusine = (Button) mainPane.getChildren().get(3);
 
         stageSearchByName = new Stage();
-        stageSearchByName.setMinHeight(600);
+        stageSearchByName.setMinHeight(500);
         stageSearchByName.setMinWidth(600);
         buttonSearch.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -54,7 +50,7 @@ public class mainWindowFX extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByName.fxml"));
 
                     stageSearchByName.setTitle("Search restaurant by name");
-                    stageSearchByName.setScene(new Scene(root, 600, 600));
+                    stageSearchByName.setScene(new Scene(root, 1000, 500));
                     stageSearchByName.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
@@ -66,8 +62,8 @@ public class mainWindowFX extends Application {
         });
 
         stageSearchCuisine = new Stage();
-        stageSearchCuisine.setMinHeight(600);
-        stageSearchCuisine.setMinWidth(600);
+        stageSearchCuisine.setMinHeight(500);
+        stageSearchCuisine.setMinWidth(1000);
         buttonSearchCusine.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {

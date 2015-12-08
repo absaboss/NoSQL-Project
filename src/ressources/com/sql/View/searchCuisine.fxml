@@ -9,21 +9,29 @@
 <?import java.lang.*?>
 <?import java.net.URL?>
 
-<?import javafx.scene.control.TextArea?>
-<StackPane fx:controller="com.sql.Controller.countRestaurantFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
+<?import javafx.scene.control.Button?>
+<StackPane fx:controller="com.sql.Controller.searchCuisineFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
 
     <children >
-        <VBox alignment="TOP_CENTER">
+        <VBox fx:id="vB" alignment="TOP_CENTER">
             <Text id="bienvenue_text" text="How many restaurant ?" />
+
+            <Label text="Choisir le type de cuisine"/>
+
+            <Label text="Choisir le quartiers" />
 
             <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
                 <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
 
-                <Label text="Choisisez le type de cuisine rechercher" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-
-                <Label text="Choisisez le lieux de la recherche" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
 
 
+
+
+
+                <VBox alignment="BASELINE_RIGHT">
+                    <Button fx:id="searchC" text="search" onAction="#handleSearchCButtonAction" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                    <Button fx:id="searchD" text="search" onAction="#handleSearchCButtonAction1" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                </VBox>
             </GridPane>
 
         </VBox>

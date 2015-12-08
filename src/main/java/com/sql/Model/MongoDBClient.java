@@ -23,7 +23,6 @@ public class MongoDBClient {
     MongoClient mongoClient;
     MongoDatabase db;
     MongoCollection collection;
-    List<String> stringList = new ArrayList<>();
 
     public MongoDBClient(){
         mongoClient = new MongoClient();
@@ -46,7 +45,7 @@ public class MongoDBClient {
     }
 
     public List<String> findByBorough(String restaurantBorough){
-        stringList.clear();
+        List<String> stringList = new ArrayList<>();
         FindIterable<Document> iterable = collection.find(eq("borough", restaurantBorough));
 
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
@@ -60,7 +59,7 @@ public class MongoDBClient {
     }
 
     public List<String> allCuisine(){
-        stringList.clear();
+        List<String> stringList = new ArrayList<>();
 
         AggregateIterable<Document> iterable = collection.aggregate(asList(
                 new Document("$group", new Document("_id", "$cuisine"))));
@@ -79,7 +78,7 @@ public class MongoDBClient {
     }
 
     public List<String> allBorough(){
-        stringList.clear();
+        List<String> stringList = new ArrayList<>();
 
         AggregateIterable<Document> iterable = collection.aggregate(asList(
                 new Document("$group", new Document("_id", "$borough"))));
@@ -95,19 +94,21 @@ public class MongoDBClient {
         });
 
         return stringList;
-    }//jbjh
+    }
 
 
-    public List<String> find(){
-        stringList.clear();
+    public List<String> find(String borough){
+        List<String> stringList = new ArrayList<>();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
-                new Document("$match", new Document("borough", "Manhattan").append("cuisine", "Pizza")),
-                new Document("$group", new Document("_id", "$address.zipcode").append("count", new Document("$sum", 1)))));
+                new Document("$match", new Document("borough", borough)),
+                new Document("$group", new Document("_id", "$cuisine").append("count", new Document("$sum", 1)))));
 
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
             public void apply(final Document document) {
-                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
+//                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
+                stringList.add(document.toJson());
+                System.out.println(document.toJson());
             }
         });
 
@@ -148,9 +149,5 @@ public class MongoDBClient {
         //System.out.println(res);
 
         return res;
-    }
-
-    public List<String> getStringList() {
-        return stringList;
     }
 }
