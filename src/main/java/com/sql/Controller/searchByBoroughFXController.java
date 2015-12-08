@@ -80,7 +80,10 @@ public class searchByBoroughFXController extends mainWindowFXController {
         cuisine.setMinWidth(200);
         cuisine.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("cuisine"));
 
+        TableColumn grade = new TableColumn("Grade");
+        grade.setCellValueFactory(new PropertyValueFactory<Restaurants,String>("grade"));
+
         table.setItems(restaurantsList);
-        table.getColumns().addAll(nameCol, adresse, cuisine);
+        table.getColumns().addAll(nameCol, adresse, cuisine, grade);
     }
 }

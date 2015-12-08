@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -30,18 +31,20 @@ public class MongoDBClient {
         collection = db.getCollection("restaurants");
     }
 
-    String textDocumentFormat = "";
-    public String findByName(String restaurantName){
+    public List<String> findByName(String restaurantName, String borough, String grade){
 
-        FindIterable<Document> iterable = collection.find(new Document("name", restaurantName));
+        List<String> stringList = new ArrayList<>();
+        FindIterable<Document> iterable = collection.find(new Document("$and",
+                asList(new Document("name", java.util.regex.Pattern.compile(restaurantName)),
+                new Document("borough", borough), new Document("grades.grade", grade))));
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
             public void apply(final Document document) {
-                textDocumentFormat = document.toJson();//On fait une conversion en JSON pour faciliter la manipulation
+                stringList.add(document.toJson());//On fait une conversion en JSON pour faciliter la manipulation
             }
         });
 
-        return textDocumentFormat;
+        return stringList;
     }
 
     public List<String> findByBorough(String restaurantBorough){
@@ -96,7 +99,6 @@ public class MongoDBClient {
         return stringList;
     }
 
-
     public List<String> find(String borough){
         List<String> stringList = new ArrayList<>();
         AggregateIterable<Document> iterable = collection.aggregate(asList(
@@ -108,7 +110,6 @@ public class MongoDBClient {
             public void apply(final Document document) {
 //                System.out.println(document.toJson());//On ajoute nos fichier string a notre list
                 stringList.add(document.toJson());
-                System.out.println(document.toJson());
             }
         });
 
@@ -126,11 +127,12 @@ public class MongoDBClient {
         Coordonnees coord;
         String street;
         int zipCode;
-
+        String restaurant_grade = "";
         JSONObject obj = new JSONObject(json);//On crée notre nouvelle objet Json
         name = obj.getString("name");
         borough = obj.getString("borough");
         cuisine = obj.getString("cuisine");
+        Date date;
 
         JSONObject address = obj.getJSONObject("address");//On récupère l'objet Address
 
@@ -142,11 +144,16 @@ public class MongoDBClient {
         JSONArray coordinate = coordinates.getJSONArray("coordinates");//On récupère le tableau avec les 2 coordonnées
         coord = new Coordonnees(coordinate.getDouble(0), coordinate.getDouble(1));//On instancie la nouvelle coordonnées
 
+        JSONArray grades = obj.getJSONArray("grades");
+        for(int i = 0; i < grades.length(); i++){
+            JSONObject grade = grades.getJSONObject(i);
+            restaurant_grade = grade.getString("grade");
+        }
+
+
         Address add = new Address(building, street, coord, zipCode);//On instancie l'address
 
-        Restaurants res = new Restaurants(name, add, borough, cuisine);//Enfin on instancie un nouveau restaurant
-
-        //System.out.println(res);
+        Restaurants res = new Restaurants(name, add, borough, restaurant_grade, cuisine);//Enfin on instancie un nouveau restaurant
 
         return res;
     }
