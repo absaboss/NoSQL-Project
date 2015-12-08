@@ -8,11 +8,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +29,8 @@ import java.util.ResourceBundle;
  */
 public class searchByNameFXController implements Initializable {
 
+    public Button searchButton;
+    public Button searchButton2;
     @FXML private TextField restaurantName;
     @FXML private GridPane grid;
     @FXML private Text response;
@@ -58,6 +64,8 @@ public class searchByNameFXController implements Initializable {
         grid.add(comboGrade, 1, 4);
         comboGrade.getItems().addAll("A", "B", "C");
         comboGrade.setValue("A");
+
+        searchButton2.setVisible(false);
     }
 
     public void handleSearchButtonAction(ActionEvent actionEvent) {
@@ -108,34 +116,26 @@ public class searchByNameFXController implements Initializable {
         table.setItems(restaurantsList);
         table.getColumns().addAll(nameCol, adresse, cuisine, grade);
 
-
-
-
-//       response.setText("Reponse : ");
-//
-//        Label name = new Label("Nom : ");
-//        grid.add(name, 0, 7);
-//
-//        Label restName = new Label(res.getName());
-//        grid.add(restName, 1, 7);
-//
-//        Label address = new Label("Adresse : ");
-//        grid.add(address, 0,8);
-//
-//        Label restAddress = new Label(res.getAddress().toString());
-//        grid.add(restAddress, 1, 8);
-//
-//        Label cuisine = new Label("Cuisine : ");
-//        grid.add(cuisine, 0, 9);
-//
-//        Label restCuisine = new Label(res.getCuisine());
-//        grid.add(restCuisine, 1, 9);
-//
-//        Label borough = new Label("Borough : ");
-//        grid.add(borough, 0, 10);
-//
-//        Label restBorough = new Label(res.getBorough());
-//        grid.add(restBorough, 1, 10);
+        searchButton2.setVisible(true);
     }
 
+    public void handleSearchButtonAction2(ActionEvent actionEvent) {
+
+        SelectionModel<Restaurants> valeur = table.getSelectionModel();
+        Restaurants test = valeur.getSelectedItem();
+
+        Stage primaryStage = new Stage();
+        WebView webView = new WebView();
+        Scene scene2 = new Scene(webView, 900, 900);
+
+        Double x = test.getCoord().getX();
+        Double y = test.getCoord().getY();
+
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load("https://www.google.fr/maps/@" + y +","+ x + ",19z?hl=fr");
+
+        primaryStage.setTitle("Geolocalisation de " + test.getName().toString() + " dans " + test.getBorough().toString());
+        primaryStage.setScene(scene2);
+        primaryStage.show();
+    }
 }
