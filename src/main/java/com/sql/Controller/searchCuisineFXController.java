@@ -40,7 +40,7 @@ public class searchCuisineFXController implements Initializable{
     private Label reponse;
     //private int compteur = 0;
     private Stage stage = new Stage();
-    public Stage stage2 = new Stage();
+    private Stage stage2 = new Stage();
 
     private MongoDBClient mongoClient = new MongoDBClient();
     private List<String> list = mongoClient.allCuisine();
@@ -160,26 +160,18 @@ public class searchCuisineFXController implements Initializable{
 
         for(int i = 0; i<list5.size(); i++){
             JSONObject obj = new JSONObject(list5.get(i));
-
             Cuisine_Borough cb = new Cuisine_Borough(obj.getString("_id"), obj.getInt("count"));
             listCB.add(cb);
+        }
 
+        for(int i = 0; i<list52.size(); i++){
             JSONObject obj2 = new JSONObject(list52.get(i));
-
             Cuisine_Borough cb2 = new Cuisine_Borough(obj2.getString("_id"), obj2.getInt("count"));
             listCB2.add(cb2);
         }
 
+
         ////////////////////////////////////////////////////////////////////////////////////
-
-        int total = 0;
-        for(int i = 0; i < listCB.size(); i++)
-        {
-            Cuisine_Borough c = listCB.get(i);
-            total += c.getNb();
-        }
-
-
 
 
         for(int j = 0; j < 30 ; j++)
@@ -204,7 +196,7 @@ public class searchCuisineFXController implements Initializable{
             for(int i = 1; i < listCB2.size(); i++)
             {
                 Cuisine_Borough c = listCB2.get(i);
-                if (c.getNb() > valeur )
+                if (c.getNb() > valeur2 )
                 {
                     valeur2 = c.getNb();
                     compteur2 = i;
