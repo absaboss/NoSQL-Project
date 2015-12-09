@@ -62,12 +62,8 @@ public class searchByBoroughFXController implements Initializable {
     }
 
     public void handleSearchButtonBoroughAction(ActionEvent actionEvent) {
-
-//        String phrase = "Tableau des ";
-//        phrase += restaurantBorough.getText() + " restaurants aleatoire dans ";
-//        phrase += comboBorough.getValue();
-
         table.setEditable(true);
+        vBox.getChildren().remove(table);
         vBox.getChildren().add(table);
 
         table.setId("tableView");

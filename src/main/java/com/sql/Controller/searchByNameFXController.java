@@ -40,7 +40,7 @@ public class searchByNameFXController implements Initializable {
     private ComboBox<String> comboBorough;
     private ComboBox<String> comboGrade;
 
-    private TableView<Restaurants> table;
+    private TableView<Restaurants> table = new TableView<>();
     private ObservableList<Restaurants> restaurantsList;
 
     @Override
@@ -68,6 +68,11 @@ public class searchByNameFXController implements Initializable {
         searchButton2.setVisible(false);
     }
 
+    public static void Refresh(final TableView<com.sql.Model.Restaurants> table, final List<com.sql.Model.Restaurants> tableList) {
+        table.setItems(null);
+        table.setItems(FXCollections.observableList(tableList));
+    }
+
     public void handleSearchButtonAction(ActionEvent actionEvent) {
 
         List<String> stringList = mongoClient.findByName(restaurantName.getText().toString(), comboBorough.getValue().toString(), comboGrade.getValue().toString());
@@ -79,7 +84,7 @@ public class searchByNameFXController implements Initializable {
             restaurantsList.add(res);
         }
 
-        table = new TableView<>();
+        vBox.getChildren().remove(table);
         vBox.getChildren().add(table);
         table.setEditable(true);
 

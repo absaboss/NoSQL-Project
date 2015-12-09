@@ -39,7 +39,6 @@ public class searchCuisineFXController implements Initializable{
     private ComboBox<String> comboBorough;
     private ComboBox<String> comboBorough2;
 
-    private Label reponse;
     //private int compteur = 0;
     private Stage stage = new Stage();
     private Stage stage2 = new Stage();
@@ -58,7 +57,6 @@ public class searchCuisineFXController implements Initializable{
         grid.add(comboBorough, 1,1);
         grid.add(comboBorough2, 1,2);
         grid.add(comboBorough3, 3,2);
-
 
 
         for(int i = 0; i < list.size(); i++)
