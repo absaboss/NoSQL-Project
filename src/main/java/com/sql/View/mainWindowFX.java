@@ -50,7 +50,7 @@ public class mainWindowFX extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByName.fxml"));
 
                     stageSearchByName.setTitle("Search restaurant by name");
-                    stageSearchByName.setScene(new Scene(root, 1000, 500));
+                    stageSearchByName.setScene(new Scene(root, 1040, 500));
                     stageSearchByName.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
@@ -71,7 +71,7 @@ public class mainWindowFX extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("searchCuisine.fxml"));
 
                     stageSearchCuisine.setTitle("Search cuisine by borough");
-                    stageSearchCuisine.setScene(new Scene(root, 450, 450));
+                    stageSearchCuisine.setScene(new Scene(root, 1000, 500));
                     stageSearchCuisine.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
@@ -83,8 +83,8 @@ public class mainWindowFX extends Application {
         });
 
         stageSearchBorough = new Stage();
-        stageSearchBorough.setMinHeight(700);
-        stageSearchBorough.setMinWidth(1050);
+        stageSearchBorough.setMinHeight(500);
+        stageSearchBorough.setMinWidth(1000);
         buttonSearchBorough.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
@@ -92,7 +92,7 @@ public class mainWindowFX extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByBorough.fxml"));
 
                     stageSearchBorough.setTitle("Search restaurants by borough");
-                    stageSearchBorough.setScene(new Scene(root, 1050, 700));
+                    stageSearchBorough.setScene(new Scene(root, 1000, 500));
                     stageSearchBorough.show();
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();

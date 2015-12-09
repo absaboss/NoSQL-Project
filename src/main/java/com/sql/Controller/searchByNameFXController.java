@@ -90,7 +90,7 @@ public class searchByNameFXController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("name"));
 
         TableColumn adresse = new TableColumn("Adresse");
-        adresse.setMinWidth(500);
+        adresse.setMinWidth(300);
 
         TableColumn building = new TableColumn("Building");
         building.setCellValueFactory(new PropertyValueFactory<Restaurants, String>("building"));
@@ -126,7 +126,7 @@ public class searchByNameFXController implements Initializable {
 
         Stage primaryStage = new Stage();
         WebView webView = new WebView();
-        Scene scene2 = new Scene(webView, 900, 900);
+        Scene scene2 = new Scene(webView, 900, 500);
 
         Double x = test.getCoord().getX();
         Double y = test.getCoord().getY();
