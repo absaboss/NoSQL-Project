@@ -67,8 +67,6 @@ public class searchByBoroughFXController implements Initializable {
 //        phrase += restaurantBorough.getText() + " restaurants aleatoire dans ";
 //        phrase += comboBorough.getValue();
 
-        table = nu
-
         table.setEditable(true);
         vBox.getChildren().add(table);
 
