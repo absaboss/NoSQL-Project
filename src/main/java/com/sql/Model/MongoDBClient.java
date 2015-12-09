@@ -36,7 +36,7 @@ public class MongoDBClient {
         List<String> stringList = new ArrayList<>();
         FindIterable<Document> iterable = collection.find(new Document("$and",
                 asList(new Document("name", java.util.regex.Pattern.compile(restaurantName)),
-                new Document("borough", borough), new Document("grades.grade", grade))));
+                new Document("borough", borough))).append("grades.grade", grade));
         iterable.forEach(new Block<Document>() {//On parcours 1 par 1 les réponses obtenues
             @Override
             public void apply(final Document document) {
