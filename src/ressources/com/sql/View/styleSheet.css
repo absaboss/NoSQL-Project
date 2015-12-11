@@ -6,6 +6,11 @@ root {
 -fx-background-image: url("background.jpg");
 }
 
+.child1
+{
+-fx-background-image: url("background.jpg")
+}
+
 .label {
     -fx-font-size: 12px;
     -fx-font-weight: bold;
@@ -20,11 +25,18 @@ root {
       -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
 
-#response, #top{
-   -fx-font-size: 15px;
-   -fx-font-family: "Arial Black";
-   -fx-fill: #818181;
-   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+#response
+{
+    -fx-font-size: 20px;
+   -fx-font-family: "Garamond";
+   -fx-fill: black;
+}
+
+#top{
+   -fx-font-size: 20px;
+   -fx-font-family: "Garamond";
+   -fx-fill: black;
+
 }
 
 #actiontarget {

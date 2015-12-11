@@ -14,7 +14,7 @@
 
     <children >
         <VBox fx:id="vB" alignment="TOP_CENTER">
-            <Text id="bienvenue_text" text="How many restaurant ?" />
+
 
             <Label text="Choisir le type de cuisine"/>
 
