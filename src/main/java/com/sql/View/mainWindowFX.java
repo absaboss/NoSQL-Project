@@ -26,6 +26,7 @@ public class mainWindowFX extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
+        primaryStage.setResizable(false);
 
         mainPane = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
 
@@ -48,16 +49,18 @@ public class mainWindowFX extends Application {
             public void handle(javafx.event.ActionEvent event) {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("searchByName.fxml"));
-
+                    stageSearchByName.setResizable(false);
                     stageSearchByName.setTitle("Search restaurant by name");
                     stageSearchByName.setScene(new Scene(root, 1040, 500));
                     stageSearchByName.show();
+
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
             }
         });
 
@@ -73,6 +76,7 @@ public class mainWindowFX extends Application {
                     stageSearchCuisine.setTitle("Search cuisine by borough");
                     stageSearchCuisine.setScene(new Scene(root, 1000, 500));
                     stageSearchCuisine.show();
+                    stageSearchCuisine.setResizable(false);
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
 
@@ -94,6 +98,7 @@ public class mainWindowFX extends Application {
                     stageSearchBorough.setTitle("Search restaurants by borough");
                     stageSearchBorough.setScene(new Scene(root, 1000, 500));
                     stageSearchBorough.show();
+                    stageSearchBorough.setResizable(false);
 
                     //((Node)(event.getSource())).getScene().getWindow().hide();
 

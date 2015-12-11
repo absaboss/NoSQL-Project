@@ -12,10 +12,11 @@ root {
 }
 
 .label {
-    -fx-font-size: 12px;
+    -fx-font-size: 16px;
+    -fx-font-family: "Garamond";
     -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-text-fill: red ;
+
 }
 
 #bienvenue_text {

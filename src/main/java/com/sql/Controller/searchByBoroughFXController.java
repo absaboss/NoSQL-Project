@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
  */
 public class searchByBoroughFXController implements Initializable {
 
+    public Button searchButtonBorough2;
     @FXML private TextField restaurantBorough;
     @FXML private GridPane grid;
     @FXML private VBox vBox;
@@ -52,7 +53,7 @@ public class searchByBoroughFXController implements Initializable {
         }
 
         comboBorough.getSelectionModel().select(list2.get(2));
-
+        searchButtonBorough2.setVisible(false);
     }
 
     public static void Refresh(final TableView<com.sql.Model.Restaurants> table, final List<com.sql.Model.Restaurants> tableList) {
@@ -112,6 +113,8 @@ public class searchByBoroughFXController implements Initializable {
 //        table.setItems(restaurantsList);
         Refresh(table, restaurantsList);
 
+        searchButtonBorough2.setVisible(true);
+
     }
 
     public void handleSearchButtonBoroughAction2(ActionEvent actionEvent) {
@@ -121,7 +124,7 @@ public class searchByBoroughFXController implements Initializable {
 
         Stage primaryStage = new Stage();
         WebView webView = new WebView();
-        Scene scene2 = new Scene(webView, 900, 900);
+        Scene scene2 = new Scene(webView, 900, 500);
 
         Double x = test.getCoord().getX();
         Double y = test.getCoord().getY();

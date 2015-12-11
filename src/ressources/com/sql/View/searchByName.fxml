@@ -19,8 +19,8 @@
                 <TextField fx:id="restaurantName" text="Hotel" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
                 <VBox alignment="BASELINE_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                    <Button fx:id="searchButton" text="search" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonAction" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                    <Button fx:id="searchButton2" text="afficher sur la map" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonAction2" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                    <Button fx:id="searchButton" text="Search" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonAction" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <Button fx:id="searchButton2" text="Show the selection on a map" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonAction2" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                 </VBox>
 
                 <Text fx:id="response" GridPane.rowIndex="2" GridPane.columnIndex="0"/>

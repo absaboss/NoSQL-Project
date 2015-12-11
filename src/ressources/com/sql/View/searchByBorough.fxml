@@ -10,18 +10,18 @@
 <StackPane fx:controller="com.sql.Controller.searchByBoroughFXController" xmlns:fx="http://javafx.com/fxml" styleClass="root" >
 
     <children >
-        <VBox fx:id="vBox" alignment="TOP_CENTER">
-            <padding><Insets top="30" right="25" bottom="10" left="25"/></padding>
-            <Text fx:id="top" text="Recherchez les restaurants par borough"/>
+        <VBox fx:id="vBox" alignment="CENTER">
+            <padding><Insets top="57" right="10" bottom="10" left="10"/></padding>
+
 
             <GridPane fx:id="grid" alignment="center" hgap="10" vgap="10">
                 <padding><Insets top="10" right="25" bottom="10" left="25"/></padding>
-                <Label text="Nombre de restaurants aléatoires :" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Random number of restaurants :" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <TextField fx:id="restaurantBorough" text="10" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
                 <VBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <Button fx:id="searchButtonBorough" text="generer le tableau" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                    <Button fx:id="searchButtonBorough2" text="afficher la selection sur une carte" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction2" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <Button fx:id="searchButtonBorough" text="List of restaurants" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Button fx:id="searchButtonBorough2" text="Show the selection on a map" alignment="BASELINE_RIGHT" onAction="#handleSearchButtonBoroughAction2" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                 </VBox>
 
                 <Text fx:id="response" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
